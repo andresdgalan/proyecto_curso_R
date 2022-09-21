@@ -1,7 +1,7 @@
 ---
 title: "proyecto"
 author: "Lidia y Andrés"
-date: "21/9/2022"
+date: "21/09/2022"
 output: word_document
 ---
 
@@ -21,6 +21,31 @@ library(readr)
 #subir datos de DIVERSIFICA
 
 DIVERSIFICA.plot <- read_delim(here("data/st.DIVERSIFICA.plot.csv"), delim = ";")
+DIVERSIFICA.plot <- DIVERSIFICA.plot[-27, ]
+DIVERSIFICA.plot$DBH2 <- DIVERSIFICA.plot$DBH^2
+
 DIVERSIFICA.tree <- read_delim(here("data/st.DIVERSIFICA.tree.strange.csv"), delim = ";")
+```
+
+```{r Linear Model, echo=FALSE}
+plotModel<- lm (def ~ DBH + DBH2 + mycrhz + NO3 + comp, data = DIVERSIFICA.plot, na.action = na.fail)
+
+#to compare all possible models with AIC
+res <- dredge(plotModel, trace=0)
+
+#to keep only the best models and visualize them
+subset(res, delta <= 2)
+
+#to see the error of the estimate and the significance of the effect
+summary(model.avg(res, subset = delta < 2, revised.var=FALSE))
+
+#to see the importance of each variable
+sw(subset(model.sel(res), delta <= 2))
+
+#Paquete DHARMA
+simulateResiduals(plotModel, plot = TRUE)
+```
+```{r plotting}
+visreg(plotModel)
 ```
 
