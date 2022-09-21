@@ -5,8 +5,8 @@ date: "21/9/2022"
 output: word_document
 ---
 
-```{r data, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r library and data, include=FALSE}
+
 ```
 
 ## R Markdown
