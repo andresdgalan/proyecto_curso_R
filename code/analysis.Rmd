@@ -6,25 +6,21 @@ output: word_document
 ---
 
 ```{r library and data, include=FALSE}
+#packages for modelling and visualization
+library(MuMIn)
+library(DHARMa)
+library(ggplot2)
+library(mgcv) 
+library(tidymv) 
+library(visreg) 
+library(mgcViz) 
+library(dplyr)
+library(here)
+library(readr)
 
+#subir datos de DIVERSIFICA
+
+DIVERSIFICA.plot <- read_delim(here("data/st.DIVERSIFICA.plot.csv"), delim = ";")
+DIVERSIFICA.tree <- read_delim(here("data/st.DIVERSIFICA.tree.strange.csv"), delim = ";")
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
