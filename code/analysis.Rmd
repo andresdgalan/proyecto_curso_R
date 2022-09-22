@@ -45,7 +45,25 @@ sw(subset(model.sel(res), delta <= 2))
 #Paquete DHARMA
 simulateResiduals(plotModel, plot = TRUE)
 ```
+
 ```{r plotting}
 visreg(plotModel)
+visreg(plotModel, gg=T) + geom_smooth(formula = lm(def ~ DBH + DBH2 + comp + mycrhz), data = DIVERSIFICA.plot)
+
+#cogido de internet cambiando el nombre de las variables (la secuencia de valores de DBH no tiene sentido, le pongo numeros con sentido)
+DBHvalues <- seq(0, 30, 0.1)
+predicteddef <- predict(plotModel,list(DBH=DBHvalues, DBH2=DBHvalues^2))
+plot(DBH, def, pch=16, xlab = "DBH (cm)", ylab = "Defoliation (%)", cex.lab = 1.3, col = "blue")
+lines(DBHvalues, predicteddef, col = "darkgreen", lwd = 3)
+
+#probando a cambiar la secuencia por el vector de DBH
+DBHvalues <- seq(-1.305547, 1.786487, 0.01)
+predicteddef <- predict(plotModel)
+plot(DIVERSIFICA.plot$DBH, DIVERSIFICA.plot$def, pch=16, xlab = "DBH (cm)", ylab = "Defoliation (%)", cex.lab = 1.3, col = "blue")
+lines(DBHvalues, predicteddef, col = "darkgreen", lwd = 3)
+
+range(DIVERSIFICA.plot$DBH)
+
 ```
 
+-   
