@@ -2,7 +2,7 @@
 title: "proyecto"
 author: "Lidia y Andrés"
 date: "21/09/2022"
-output: html
+output: "word_document"
 ---
 #packages for modelling and visualization
 ```{r}
@@ -63,9 +63,6 @@ sw(subset(model.sel(res), delta <= 2))
 ```
 
 <<<<<<< HEAD
-```{r plotting}
-=======
-Paquete DHARMA
 
 ```{r dharma, echo = TRUE}
 
@@ -76,8 +73,9 @@ simulateResiduals(plotModel, plot = TRUE)
 Plot model visreg
 
 ```{r plotting, echo = TRUE}
->>>>>>> 1c603d27912b944b755f4cf44f1aaafa885d04c7
 visreg(plotModel)
+```
+```{r}
 visreg(plotModel, gg=T) + geom_smooth(formula = lm(def ~ DBH + DBH2 + comp + mycrhz), data = DIVERSIFICA.plot)
 
 #cogido de internet cambiando el nombre de las variables (la secuencia de valores de DBH no tiene sentido, le pongo numeros con sentido)
@@ -93,7 +91,6 @@ plot(DIVERSIFICA.plot$DBH, DIVERSIFICA.plot$def, pch=16, xlab = "DBH (cm)", ylab
 lines(DBHvalues, predicteddef, col = "darkgreen", lwd = 3)
 
 range(DIVERSIFICA.plot$DBH)
-
 ```
 
 -   
