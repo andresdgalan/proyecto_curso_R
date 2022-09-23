@@ -30,6 +30,30 @@ DIVERSIFICA.plot$DBH2 <- DIVERSIFICA.plot$DBH^2
 DIVERSIFICA.tree <- read_delim(here("data/st.DIVERSIFICA.tree.strange.csv"), delim = ";")
 ```
 
+```{r gam}
+gam <- gam(def ~ s(DBH) + s(mycrhz) + s(NO3) + s(comp), data = DIVERSIFICA.plot)
+```
+```{r}
+gam <- gam(def ~ s(DBH), data = DIVERSIFICA.plot)
+visreg(gam)
+```
+
+```{r}
+gam <- gam(def ~ s(mycrhz), data = DIVERSIFICA.plot)
+visreg(gam)
+```
+
+```{r}
+gam <- gam(def ~ s(comp), data = DIVERSIFICA.plot)
+visreg(gam)
+```
+
+```{r}
+gam <- gam(def ~ s(NO3), data = DIVERSIFICA.plot)
+visreg(gam)
+```
+
+
 ```{r Linear Model, echo=FALSE}
 
 plotModel<- lm (def ~ DBH + DBH2 + mycrhz + NO3 + comp, data = DIVERSIFICA.plot, na.action = na.fail)
